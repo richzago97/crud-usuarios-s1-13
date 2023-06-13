@@ -61,7 +61,7 @@ Após a execução dos testes, será exibido um log no terminal com informaçõe
 
 ### Integração Contínua com GitHub Actions
 
-O projeto está configurado para executar o CI usando o GitHub Actions. O fluxo de trabalho (workflow) está definido no arquivo `.github/workflows/test.yml`. Ele é acionado automaticamente em duas situações:
+O projeto está configurado para executar o CI usando o GitHub Actions. O fluxo de trabalho (workflow) está definido no arquivo `.github/workflows/integration_tests.yml`. Ele é acionado automaticamente em duas situações:
 
 - Quando ocorre um push para a branch `master`.
 - Quando é aberto um pull request para a branch `master`.
