@@ -1,136 +1,77 @@
-# Express: CRUD de usuário + permissão de administrador
+# Documentação do Projeto Express: CRUD de Usuário + Permissão de Administrador
 
-Para inciar este projeto, é necessário instalar as dependências, que serão utilizadas nos testes. Portanto utilize o comando abaixo para instalar tais dependências:
+## Visão Geral
+O projeto Express: CRUD de Usuário + Permissão de Administrador é uma aplicação desenvolvida em Node.js, utilizando JavaScript como linguagem principal. O objetivo do projeto é fornecer um serviço de CRUD (Create, Read, Update, Delete) para gerenciar usuários, com a adição de funcionalidades de permissão de administrador. A aplicação não utiliza um banco de dados tradicional, mas sim um array vazio para armazenar os dados dos usuários em memória.
 
-````
-yarn install
-````
+### Tecnologias Utilizadas
+- Node.js: plataforma de desenvolvimento em JavaScript para construir aplicações de rede escaláveis.
+- JavaScript: linguagem de programação amplamente utilizada para desenvolvimento web.
+- Express.js: framework web para Node.js que simplifica o desenvolvimento de aplicações web.
 
+## Instalação
 
-**Atenção:** é necessário utilizar o `yarn` pois esse projeto foi iniciado com esse gerenciador de pacotes.
+Antes de iniciar o projeto, certifique-se de ter o gerenciador de pacotes Yarn instalado em sua máquina. Caso não possua, você pode instalá-lo globalmente executando o seguinte comando:
 
-Para verificar se já possui o gerenciador yarn instalado utilize o seguinte comando:
-
-````
-yarn --version
-````
-
-Caso não possua o yarn instalado, utilize o comando abaixo para instalar globalmente na sua máquina:
-
-````
+```bash
 npm install --global yarn
-````
-# **Sobre os testes**
+```
 
-Essa aplicação possui testes, que serão utilizados para validar, se todas as regras de negócio foram aplicadas de maneira correta.
+Em seguida, você precisa instalar as dependências do projeto. No diretório raiz do projeto, execute o seguinte comando:
 
-Os testes estão localizados em `src/test/user.spec.js`. 
+```bash
+yarn install
+```
 
-**De modo algum altere esse arquivo.** Isso poderá comprometer a integridade dos testes.
+## Testes
 
-Além disso, é importante não alterar o arquivo `.babelrc`. (não se preocupe em saber para que serve isso por enquanto).
+O projeto inclui testes automatizados para validar as regras de negócio e garantir o funcionamento adequado da aplicação. Os testes estão localizados no arquivo `src/test/user.spec.js`. É importante não alterar esse arquivo para preservar a integridade dos testes.
 
-E também não altere o script de `test` localizado no `package.json`. Isso será utilizado para rodar os testes.
+Para executar os testes, certifique-se de estar no diretório raiz do projeto e execute o seguinte comando:
 
-
-# **Rodando os testes** 
-
-Para rodar os testes é necessário que no seu terminal, você esteja dentro do diretório do projeto.
-
-Estando no terminal e dentro do caminho correto, você deverá utilizar o seguinte comando:
-
-````
+```bash
 yarn test
-````
-caso seja necessário um log mais completo, utilize o comando:
-````
+```
+
+Se desejar um log mais detalhado, você pode executar o comando:
+
+```bash
 yarn test --all
-````
-Após isso aparecerá um log no seu terminal, contendo as informações da execução do teste.
+```
 
-**Observação:** O teste pode demorar alguns segundos para ser finalizado.
+Após a execução dos testes, será exibido um log no terminal com informações sobre a execução dos testes e os resultados obtidos. Certifique-se de que todos os testes tenham sido aprovados.
 
-O seu objetivo é que a mensagem nesse log se pareça com essa:
-`````
-yarn run v1.22.18
-$ jest --all
-  console.log
-    Server is running on http://localhost:3000
+## Endpoints
 
-      at Server.log (src/app.js:10:32)
+A seguir estão listados os endpoints disponíveis na aplicação, juntamente com suas responsabilidades e métodos HTTP correspondentes:
 
- PASS  src/test/user.spec.js
-  Testing success cases in the routes
-    √ Testando criação de usuário com um corpo correto (142 ms)                                                                                                    
-    √ Testando criação de usuário com e-mail já utilizado (4 ms)                                                                                                   
-    √ Testando login válido (71 ms)                                                                                                                                
-    √ Testando login inválido (68 ms)                                                                                                                              
-    √ Testando listagem de usuários (73 ms)                                                                                                                        
-    √ Testando listagem de usuários sem token (3 ms)                                                                                                               
-    √ Testando listagem de usuários sem autorização (144 ms)                                                                                                       
-    √ Testando listagem do perfil de usuário (73 ms)                                                                                                               
-    √ Testando listagem do perfil de usuário (3 ms)                                                                                                                
-    √ Testando atualização sem token (73 ms)                                                                                                                       
-    √ Testando atualização do próprio usuário sem permissão de ADM (75 ms)                                                                                         
-    √ Testando atualização de outro usuário sem permissão de ADM (141 ms)                                                                                          
-    √ Testando atualização de qualquer usuário com permissão de ADM (134 ms)                                                                                       
-    √ Testando deleção sem token (70 ms)                                                                                                                           
-    √ Testando deleção de outro usuário sem permissão de ADM (143 ms)                                                                                              
-    √ Testando deleção de outro usuário com permissão de ADM (137 ms)                                                                                              
-    √ Testando deleção do próprio usuário (75 ms)                                                                                                                  
-                                                                                                                                                                   
-Test Suites: 1 passed, 1 total                                                                                                                                     
-Tests:       17 passed, 17 total                                                                                                                                   
-Snapshots:   0 total
-Time:        1.957 s, estimated 3 s
-Ran all test suites.
-Jest did not exit one second after the test run has completed.
+### Criação de Usuários
+- **Método:** POST
+- **Endpoint:** /users
+- **Responsabilidade:** Cria um novo usuário no sistema. Os dados do usuário devem ser enviados no corpo da requisição no formato JSON.
 
-This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
-`````
-# **Entendendo o log**
+### Listagem de Usuários
+- **Método:** GET
+- **Endpoint:** /users
+- **Responsabilidade:** Retorna uma lista de todos os usuários cadastrados no sistema.
 
-### Aqui vão algumas explicações sobre cada componente da saída do seu teste:
-- `PASS  src/test/user.spec.js`: Essa linha mostra que todos os testes, contidos no arquivo especificado, foram executados com êxito;
-- `Testing success cases in the routes`: aqui é dado uma lista com parte ou todos os testes executados;
-    ````
-    √ Testando criação de usuário com um corpo correto (151 ms)                                                                                                    
-    √ Testando criação de usuário com e-mail já utilizado (7 ms)                                                                                                   
-    √ Testando login válido (76 ms)                                                                                                                                
-    √ Testando login inválido (77 ms)                                                                                                                              
-    √ Testando listagem de usuários (91 ms)                                                                                                                        
-    √ Testando listagem de usuários sem token (2 ms)                                                                                                               
-    √ Testando listagem de usuários sem autorização (147 ms)
-    ````
-- `Test Suites: 1 passed, 1 total`: aqui estão a quantidade de blocos de testes executados e quantos desses blocos passaram ou falharam nos testes;
-- `Tests: 17 passed, 17`: nessa linha estão a quantidade total de testes executados, assim como quantos falharam ou tiveram sucesso;
-##
-Caso o seu teste **falhe**, você reberá `FAIL  src/test/user.spec.js` ao invés de `PASS  src/test/user.spec.js`.
+### Perfil do Usuário Logado
+- **Método:** GET
+- **Endpoint:** /users/profile
+- **Responsabilidade:** Retorna os dados do usuário atualmente logado. Este endpoint requer autenticação através de um token JWT válido.
 
-Para um feedback mais preciso olhe para a lista de testes executados busque pelo erro específico.
+### Atualização de Usuário
+- **Método:** PATCH
+- **Endpoint:** /users/<uuid>
+- **Responsabilidade:** Atualiza os dados de um usuário específico identificado pelo seu UUID (identificador único). Os dados atualizados devem ser enviados no corpo da requisição no formato JSON.
 
-***O teste que falhou irá aparecer com um `x` ao invés de um `√`.***
+### Exclusão de Usuário
+- **Método:** DELETE
+- **Endpoint:** /users/<uuid>
+- **Responsabilidade:** Ex
 
-E logo abaixo da lista de testes executados irá aparecer uma ou mais mensagens, com o que era esperado (Expected) e com o que foi recebido de fato (Received).
+clui um usuário específico identificado pelo seu UUID (identificador único).
 
-`````
- FAIL  src/test/user.spec.js
-  Testing success cases in the routes
-    √ Testando criação de usuário com um corpo correto (150 ms)                                                                                                    
-    √ Testando criação de usuário com e-mail já utilizado (4 ms)                                                                                                   
-    √ Testando login válido (4 ms)                                                                                                                                 
-    × Testando login inválido (4 ms)                                                                                                                               
-    √ Testando listagem de usuários (6 ms)                                                                                                                         
-    √ Testando listagem de usuários sem token (3 ms)                                                                                                               
-    √ Testando listagem de usuários sem autorização (80 ms)                                                                                                        
-                                                                                                                                                                   
-  ● Testing success cases in the routes › Testando login inválido                                                                                                  
-                                                                                                                                                                   
-    expect(received).toBe(expected) // Object.is equality
-
-    Expected: 401
-    Received: 200
-
-`````
-#
-### Agora que já sabe como iniciar o seu projeto, rodar os testes e lê-los, é hora de colocar a mão no código!
+### Observações
+- A aplicação não utiliza um banco de dados tradicional, mas sim um array vazio para armazenar os dados dos usuários em memória. Isso significa que os dados serão perdidos ao reiniciar a aplicação.
+- O projeto inclui testes automatizados para garantir o funcionamento correto da aplicação. Certifique-se de que todos os testes tenham sido aprovados após qualquer modificação no código.
+- A autenticação é realizada utilizando tokens JWT (JSON Web Token). Certifique-se de incluir o token válido nos headers das requisições autenticadas.
