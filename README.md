@@ -22,6 +22,25 @@ Em seguida, você precisa instalar as dependências do projeto. No diretório ra
 yarn install
 ```
 
+## Configure as variáveis de ambiente:
+   
+   - Renomeie o arquivo `.env.example` para `.env`.
+   - Abra o arquivo `.env` e configure as variáveis de acordo com o seu ambiente.
+
+## Executando o Projeto
+Após ter instalado as dependências, você pode executar o projeto localmente. Siga os passos abaixo:
+
+Certifique-se de estar no diretório raiz do projeto.
+
+Execute o seguinte comando para iniciar o servidor:
+
+```
+yarn dev
+```
+
+O servidor será iniciado e estará disponível no endereço http://localhost:3000.
+Agora você pode acessar a aplicação no navegador e interagir com ela.
+
 ## Testes
 
 O projeto inclui testes automatizados para validar as regras de negócio e garantir o funcionamento adequado da aplicação. Os testes estão localizados no arquivo `src/test/user.spec.js`. É importante não alterar esse arquivo para preservar a integridade dos testes.
@@ -39,6 +58,21 @@ yarn test --all
 ```
 
 Após a execução dos testes, será exibido um log no terminal com informações sobre a execução dos testes e os resultados obtidos. Certifique-se de que todos os testes tenham sido aprovados.
+
+### Integração Contínua com GitHub Actions
+
+O projeto está configurado para executar o CI usando o GitHub Actions. O fluxo de trabalho (workflow) está definido no arquivo `.github/workflows/integration_tests.yml`. Ele é acionado automaticamente em duas situações:
+
+- Quando ocorre um push para a branch `master`.
+- Quando é aberto um pull request para a branch `master`.
+
+O fluxo de trabalho de CI realiza as seguintes etapas:
+
+1. Verifica a sintaxe e a formatação do código usando ferramentas como ESLint e Prettier.
+2. Instala as dependências do projeto usando o Yarn.
+3. Executa os testes automatizados do projeto usando o comando `yarn test`.
+
+Para acessar os resultados do CI, vá até a página do projeto no GitHub, clique na aba "Actions" e selecione o workflow "Execução dos testes de integração". Lá você encontrará os registros das execuções anteriores e poderá verificar se os testes estão passando ou se ocorreram erros.
 
 ## Endpoints
 
@@ -69,7 +103,7 @@ A seguir estão listados os endpoints disponíveis na aplicação, juntamente co
 - **Endpoint:** /users/<uuid>
 - **Responsabilidade:** Ex
 
-clui um usuário específico identificado pelo seu UUID (identificador único).
+Exclui um usuário específico identificado pelo seu UUID (identificador único).
 
 ### Observações
 - A aplicação não utiliza um banco de dados tradicional, mas sim um array vazio para armazenar os dados dos usuários em memória. Isso significa que os dados serão perdidos ao reiniciar a aplicação.
