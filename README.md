@@ -24,8 +24,8 @@ yarn install
 
 ## Configure as variáveis de ambiente:
    
-   - Renomeie o arquivo `.env.example` para `.env`.
-   - Abra o arquivo `.env` e configure as variáveis de acordo com o seu ambiente.
+- Renomeie o arquivo `.env.example` para `.env`.
+- Abra o arquivo `.env` e configure as variáveis de acordo com o seu ambiente.
 
 ## Executando o Projeto
 Após ter instalado as dependências, você pode executar o projeto localmente. Siga os passos abaixo:
@@ -68,11 +68,21 @@ O projeto está configurado para executar o CI usando o GitHub Actions. O fluxo 
 
 O fluxo de trabalho de CI realiza as seguintes etapas:
 
-1. Verifica a sintaxe e a formatação do código usando ferramentas como ESLint e Prettier.
+1. Verifica a sintaxe e a formatação do código usando ferramentas
+
+ como ESLint e Prettier.
 2. Instala as dependências do projeto usando o Yarn.
 3. Executa os testes automatizados do projeto usando o comando `yarn test`.
 
 Para acessar os resultados do CI, vá até a página do projeto no GitHub, clique na aba "Actions" e selecione o workflow "Execução dos testes de integração". Lá você encontrará os registros das execuções anteriores e poderá verificar se os testes estão passando ou se ocorreram erros.
+
+## Documentação de API (Swagger)
+
+A API possui uma documentação Swagger que descreve todos os endpoints disponíveis, seus métodos HTTP, parâmetros, respostas e outras informações relevantes. A documentação está acessível no seguinte endpoint:
+
+- **Endpoint:** /api-docs
+
+Certifique-se de que a aplicação esteja em execução e que você tenha preenchido a chave secreta no arquivo `.env` para que o Swagger funcione corretamente.
 
 ## Endpoints
 
@@ -101,9 +111,7 @@ A seguir estão listados os endpoints disponíveis na aplicação, juntamente co
 ### Exclusão de Usuário
 - **Método:** DELETE
 - **Endpoint:** /users/<uuid>
-- **Responsabilidade:** Ex
-
-Exclui um usuário específico identificado pelo seu UUID (identificador único).
+- **Responsabilidade:** Exclui um usuário específico identificado pelo seu UUID (identificador único).
 
 ### Observações
 - A aplicação não utiliza um banco de dados tradicional, mas sim um array vazio para armazenar os dados dos usuários em memória. Isso significa que os dados serão perdidos ao reiniciar a aplicação.
